@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <link href="/static/style.css" rel="stylesheet" />
+    </head>
+    <body>
+        <p>John's favorite books are:</p>
+        <ol>
+        {% for i in range(titles|length) %}
+            {% if titles[i] == "Far From the Tree" %}
+                <li class="favorite">
+            {% else %}
+                <li >
+            {% endif %}
+                    <p grid-column=1>{{titles[i]}}</p>
+                    <img grid-column=2 src={{images[i]}}/>
+                </li>
+        {% endfor %}
+        </ol>
+    </body>
+</html>
