@@ -16,5 +16,30 @@
                 </li>
         {% endfor %}
         </ol>
+        <form method="GET" action="/">
+            <input type="text" name="query" placeholder="Search for a book title!"/>
+            <input type="submit" value="Search"/>
+        </form>
+        <!-- {% if search_results|length > 0 %} -->
+            <b>Search results: </b>
+            <ol>
+                {% for i in range(search_results|length) %}
+                    <li >
+                        <b grid-column=1>{{search_results[i]["title"]}}
+                            {% if search_results[i]["subtitle"] is not none %}  <!-- Only display a subtitle if it exists --> 
+                            : {{search_results[i]["subtitle"]}}
+                            {% endif %}
+                        </b>
+                        <p grid-column=1>{{search_results[i]["author"]}}</p>
+                        {% if search_results[i]["image"] is none %}  <!-- Use generic placeholder if no image found --> 
+                            <img grid-column=2 src="/static/generic_book.jpeg" width="128" height="196">
+                        {% else %}
+                            <img grid-column=2 src={{search_results[i]["image"]}}/>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ol>
+
+        <!-- {% endif %} -->
     </body>
 </html>
